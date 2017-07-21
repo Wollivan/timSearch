@@ -12,9 +12,8 @@ Include the following tag in your footer:
 
 Make sure that the include for the database in the ajax.php file is targed correctly e.g.
 
-```<?php 
-	include('../../database.php'); 
-?>
+```
+include('../../database.php'); 
 ```
 
 Ensure that the call to the database on line 38 in ajax.php is correct!
