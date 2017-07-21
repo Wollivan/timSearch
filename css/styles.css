@@ -1,0 +1,27 @@
+.search-suggestions {
+	width: 300px;
+	max-height: 200px;
+	overflow-y: auto;
+	border: 1px solid #6a6a6a;
+	position: absolute;
+	display: none;
+}
+.search-suggestions a {
+	display: block !important;
+	padding: 1%;
+    background-color: #efefef;
+    color: #000;
+	font-size: 20px;
+	border-bottom: 1px solid #6a6a6a;
+}
+.search-suggestions a:hover {
+    color: #FFFFFF;
+    background-color: #7dcaf1;
+}
+.search-suggestions a span {
+	color: #bfbfbf;
+}
+.highlighted {
+	background-color: #378FBC !important;
+	color: #ffffff !important;
+}
