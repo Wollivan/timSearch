@@ -2,17 +2,20 @@
 
 Include the following tag in your header:
 
-```<link rel="stylesheet" href="path/to/search/styles.css">```
+```<link rel="stylesheet" href="path/to/search/styles.css">
+```
 
 Include the following tag in your footer:
 
-```<script type="text/javascript" src="path/to/search/search.js"></script>```
+```<script type="text/javascript" src="path/to/search/search.js"></script>
+```
 
 Make sure that the include for the database in the ajax.php file is targed correctly e.g.
 
 ```<?php 
 	include('../../database.php'); 
-?>```
+?>
+```
 
 Ensure that the call to the database on line 38 in ajax.php is correct!
 
@@ -35,7 +38,8 @@ Example:
 Search...
 ```<div class="search-wrap">
 	<input type="text" class="search" data-search="table_locations fields_name" name="search" placeholder="Search..." autocomplete="off" />
-</div>```
+</div>
+```
 
 Optional:
 
@@ -46,7 +50,8 @@ Example:
 Search...
 ```<div class="search-wrap">
 	<input type="text" class="search" data-search="table_locations fields_name fields_rating" name="search" placeholder="Search..." autocomplete="off" />
-</div>```
+</div>
+```
 
 height_'integer'	Limits the height of the search results in pixels of your chosen integer and adds scroll if it goes beyond
 
@@ -55,7 +60,8 @@ Example:
 Search...
 ```<div class="search-wrap">
 	<input type="text" class="search" data-search="table_locations fields_name height_50" name="search" placeholder="Search..." autocomplete="off" />
-</div>```
+</div>
+```
 
 limit_'integer' Limits the results of the search to your chosen integer
 
@@ -64,7 +70,8 @@ Example:
 Search...
 ```<div class="search-wrap">
 	<input type="text" class="search" data-search="table_locations fields_name limit_4" name="search" placeholder="Search..." autocomplete="off" />
-</div>```
+</div>
+```
 
 preview_'yourfield' Show a preview another field from each result that has no bearing on the search itself
 
@@ -73,7 +80,8 @@ Example:
 Search...
 ```<div class="search-wrap">
 	<input type="text" class="search" data-search="table_locations fields_name preview_rating" name="search" placeholder="Search..." autocomplete="off" />
-</div>```
+</div>
+```
 
 orderby_'yourfield' Order your results by the chosen field in your databases
 
@@ -84,7 +92,8 @@ Example: (Preview is on for id so you can see the order working)
 Search...
 ```<div class="search-wrap">
 	<input type="text" class="search" data-search="table_locations fields_name orderby_id ordertype_desc preview_id" name="search" placeholder="Search..." autocomplete="off" />
-</div>```
+</div>
+```
 
 startno_'integer' The search will start when your chosen integer is reached (default = 3)
 
@@ -93,7 +102,8 @@ Example:
 Search...
 ```<div class="search-wrap">
 	<input type="text" class="search" data-search="table_locations fields_name startno_1" name="search" placeholder="Search..." autocomplete="off" />
-</div>```
+</div>
+```
 
 striphtml_off If this is set then html tags in the results will not be striped when you click the entry to populate the input
 
@@ -102,7 +112,8 @@ Example: (Search for 'Boston')
 Search...
 ```<div class="search-wrap">
 	<input type="text" class="search" data-search="table_locations fields_name striphtml_off" name="search" placeholder="Search..." autocomplete="off" />
-</div>```
+</div>
+```
 
 customclass_'yourclass' Adds a class to the search-suggestion div, from here you can target the elemets with the following css targeters
 
@@ -111,7 +122,8 @@ Example:
 Search...
 ```<div class="search-wrap">
 	<input type="text" class="search" data-search="table_locations fields_name customclass_locations" name="search" placeholder="Search..." autocomplete="off" />
-</div>```
+</div>
+```
 
 Custom CSS:
 ```.search-suggestions.locations a:hover {
@@ -119,42 +131,48 @@ Custom CSS:
 }
 .search-suggestions.locations a.highlighted {
 	background-color: #ab84fa !important;
-}```
+}
+```
 
 ##Options for CSS targeting
 ####the suggestion wrapper
 	
 ```.search-suggestions.yourclass {
 		
-}```
+}
+```
 
 		
 ####each suggestion
 	
 ```.search-suggestions.yourclass a  {
 	
-}```
+}
+```
 
 		
 ####each suggestion on hover
 	
 ```.search-suggestions.yourclass a:hover {
 		
-}```
+}
+```
 
 		
 ####each suggestion while highlighted with the arrow keys(give these styles '!important')
 	
 ```.search-suggestions.yourclass a.highlighted {
 		
-} ```
+} 
+```
 
 		
 ####the preview on each suggestion
 	
 ```.search-suggestions.yourclass a span {
 		
-}```
+}
+```
 	
 ##All options
 
