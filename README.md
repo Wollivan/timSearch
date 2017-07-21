@@ -1,0 +1,3 @@
+# search
+Search plugin
+Visit this url for documentation...
