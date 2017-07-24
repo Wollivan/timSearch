@@ -137,6 +137,9 @@
 						}
 					});
 				}
+				if(e.keyCode === 9) {
+					$('.search-suggestions').hide();
+				}
 			}
 		});
 		$('.search-wrap').on('click.search', '.search-suggest', function(){
@@ -159,7 +162,6 @@
 		let $NotSearch = $('body');
 			
 		$NotSearch.on('click.search', function(){
-			
 			let $searchBox = $('.search-suggestions');
 			$searchBox.fadeOut(300);
 		});
