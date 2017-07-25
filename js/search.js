@@ -110,7 +110,7 @@
 				if(search.length >= startno || $searchSuggestions.is(':visible')){
 					$searchSuggestions.show();
 					$.ajax({
-						url: 'search/functions/ajax.php',
+						url: 'timSearch/functions/ajax.php',
 						type: 'post',
 						data: {
 							'action': 'searchSug',
