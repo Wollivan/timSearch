@@ -5,8 +5,9 @@
 ## 0.1.1 (2017-25-07)
 ### Added 
 - CHANGLOG.md
+- Option to choose which field is filled into the input on click
 
- ###
+ ### Changed
 - Changed name to 'timSearch'
 
 ## 0.1 (2017-24-07)
