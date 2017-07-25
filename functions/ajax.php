@@ -14,6 +14,7 @@
 				$preview = $_POST['preview'];
 				$striphtml = $_POST['striphtml'];
 				$customclass = $_POST['customclass'];
+				$altrow = $_POST['altrow'];
 				$fieldData = explode(",", $_POST['fields']);
 				$fieldDataCount = count($fieldData);
 				
@@ -37,6 +38,11 @@
 				$sql = "SELECT * FROM $table $search $orderby $limit";
 				$res = mysqli_query($conn, $sql) or die('<span style="background-color:#fff;">Ensure that your database call in ajax.php is correct (it\'s on line 38)</span>');
 				$num = mysqli_num_rows($res);
+				
+				
+				//$stmt = $conn->prepare("SELECT * FROM $table $search $orderby $limit");
+				
+				
 				if($num >= 1){
 					if($fieldDataCount > 1){
 						while($row = mysqli_fetch_assoc($res)){
@@ -48,11 +54,18 @@
 							}
 							$searchdisplay = rtrim($searchdisplay, " | ");
 							$resultbyoutput = $row[$resultby];
-							
-							if($striphtml == ''){
-								$searchValue = strip_tags($row[$fieldData[0]]);
+							if($altrow == ''){
+								if($striphtml == ''){
+									$searchValue = strip_tags($row[$fieldData[0]]);
+								}else{
+									$searchValue = $row[$fieldData[0]];
+								}
 							}else{
-								$searchValue = $row[$fieldData[0]];
+								if($striphtml == ''){
+									$searchValue = strip_tags($row[$altrow]);
+								}else{
+									$searchValue = $row[$altrow];
+								}
 							}
 							
 							if($preview != ''){
@@ -65,11 +78,15 @@
 						$success = 1;
 					}else{
 						while($row = mysqli_fetch_assoc($res)){
-							
-							if($striphtml == ''){
-								$searchValue = strip_tags($row[$fields]);
+							if($altrow != ''){
+								$fieldsCheck = $altrow;
 							}else{
-								$searchValue = $row[$fields];
+								$fieldsCheck = $fields;
+							}
+							if($striphtml == ''){
+								$searchValue = strip_tags($row[$fieldsCheck]);
+							}else{
+								$searchValue = $row[$fieldsCheck];
 							}
 							if($preview != ''){
 								$searchOutput .= '<a class="search-suggest" data-search-query="'.$searchValue.'">'.$row[$fields].' | <span>'.$row[$preview].'</span></a>';

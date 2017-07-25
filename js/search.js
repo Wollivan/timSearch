@@ -32,6 +32,7 @@
 				preview = '',
 				striphtml = '',
 				customclass = '',
+				altrow = '',
 				startno = 3,
 				searchParamsSplit = searchParams.split(' '),
 				searchParamsSplitLength = searchParamsSplit.length;
@@ -66,6 +67,9 @@
 				}
 				if (searchParamsSplit[i].startsWith('customclass_')) {
 					customclass = searchParamsSplit[i].replace(/.*customclass_([^\s]+).*/g, "$1");
+				}
+				if (searchParamsSplit[i].startsWith('altrow_')) {
+					altrow = searchParamsSplit[i].replace(/.*altrow_([^\s]+).*/g, "$1");
 				}
 			}
 			fields = fields.substring(0, fields.length - 1);
@@ -123,7 +127,8 @@
 							'ordertype': ordertype,
 							'preview': preview,
 							'striphtml': striphtml,
-							'customclass': customclass
+							'customclass': customclass,
+							'altrow': altrow
 						},
 						success: function(data, status){
 							// $this.after(data);
