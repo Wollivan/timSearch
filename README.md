@@ -31,8 +31,6 @@ Give the input class="search"
 
 Place options inside data-search="" attribute in the input
 
-List of locations for testing: Baltics, <em>Boston</em>, Canada, Canary Islands, Canterbury, England, France, Greenland, Greenwich, Haverhill, Iceland, Netherlands, New England, New York, Portugal, Spain
-
 Required:
 
 ## table_'yourtable'
@@ -121,7 +119,7 @@ Example:
 ## striphtml_off
 If this is set then html tags in the results will not be striped when you click the entry to populate the input
 
-Example: (Search for 'Boston')
+Example:
 
 ```
 <div class="search-wrap">
