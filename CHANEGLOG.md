@@ -3,6 +3,7 @@
 ## 0.2 (2017-01-08)
 ### Added
 - Some security with mysqli_real_escape_string
+- Start of history, adds the cookie but does nothing with it
 
 ## 0.1.1 (2017-25-07)
 ### Added 

@@ -33,6 +33,8 @@
 				striphtml = '',
 				customclass = '',
 				altrow = '',
+				history = '',
+				historyID = '',
 				startno = 3,
 				searchParamsSplit = searchParams.split(' '),
 				searchParamsSplitLength = searchParamsSplit.length;
@@ -70,6 +72,10 @@
 				}
 				if (searchParamsSplit[i].startsWith('altrow_')) {
 					altrow = searchParamsSplit[i].replace(/.*altrow_([^\s]+).*/g, "$1");
+				}
+				if (searchParamsSplit[i].startsWith('history_')) {
+					history = searchParamsSplit[i].replace(/.*history_([^\s]+).*/g, "$1");
+					historyID = $this.attr('id');
 				}
 			}
 			fields = fields.substring(0, fields.length - 1);
@@ -110,6 +116,25 @@
 				$this.val(searchSuggest);
 				$searchSuggestions.hide();
 				$this.removeClass('no-enter');
+				if(history != ''){
+					$.ajax({
+						url: 'timSearch/functions/ajax.php',
+						type: 'post',
+						data: {
+							'action': 'searchHistory',
+							'searchSuggest': searchSuggest,
+							'history': history,
+							'historyID': historyID
+						},
+						success: function(data, status){
+							console.log('test');
+							
+						},
+						error: function(xhr, status, error){
+							console.log(error);
+						}
+					});
+				}
 			}else{
 				if(search.length >= startno || $searchSuggestions.is(':visible')){
 					$searchSuggestions.show();
@@ -153,7 +178,8 @@
 				searchSuggest = $this.attr('data-search-query'),
 				$parent =  $this.parent('.search-suggestions');
 				$input = $parent.siblings('.search');
-				console.log(mulitCheck);
+				// console.log($this);
+				// console.log('asdasd');
 			if($input.hasClass('no-enter')){
 				$input.removeClass('no-enter');
 			}
