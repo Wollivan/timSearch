@@ -5,16 +5,27 @@
 		switch ($action) {
 			case 'searchSug':
 				$search = $_POST['search'];
+				$search = mysqli_real_escape_string($conn, $search);
 				$table = $_POST['table'];
+				$table = mysqli_real_escape_string($conn, $table);
 				$fields = $_POST['fields'];
+				$fields = mysqli_real_escape_string($conn, $fields);
 				$height = $_POST['height'];
+				$height = mysqli_real_escape_string($conn, $height);
 				$limit = $_POST['limit'];
+				$limit = mysqli_real_escape_string($conn, $limit);
 				$orderby = $_POST['orderby'];
+				$orderby = mysqli_real_escape_string($conn, $orderby);
 				$ordertype = $_POST['ordertype'];
+				$ordertype = mysqli_real_escape_string($conn, $ordertype);
 				$preview = $_POST['preview'];
+				$preview = mysqli_real_escape_string($conn, $preview);
 				$striphtml = $_POST['striphtml'];
+				$striphtml = mysqli_real_escape_string($conn, $striphtml);
 				$customclass = $_POST['customclass'];
+				$customclass = mysqli_real_escape_string($conn, $customclass);
 				$altrow = $_POST['altrow'];
+				$altrow = mysqli_real_escape_string($conn, $altrow);
 				$fieldData = explode(",", $_POST['fields']);
 				$fieldDataCount = count($fieldData);
 				
@@ -39,8 +50,7 @@
 				$res = mysqli_query($conn, $sql) or die('<span style="background-color:#fff;">Ensure that your database call in ajax.php is correct (it\'s on line 38)</span>');
 				$num = mysqli_num_rows($res);
 				
-				
-				//$stmt = $conn->prepare("SELECT * FROM $table $search $orderby $limit");
+			
 				
 				
 				if($num >= 1){
