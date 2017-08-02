@@ -122,7 +122,7 @@
 				$cookie = $_COOKIE['timSearch_'.$historyID];
 				$cookieEX = explode('.', $cookie);
 				foreach($cookieEX as $key => $value){
-					$searchOutput .= '<a class="search-suggest" data-search-query="'.$value.'">'.$value.'</a>';
+					$searchOutput .= '<a class="search-suggest search-history" data-search-query="'.$value.'">'.$value.'</a>';
 				}
 				echo $searchOutput;
 				break;

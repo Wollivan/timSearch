@@ -137,7 +137,7 @@ Example:
 	<input type="text" class="search" data-search="table_locations fields_name altrow_id" name="search" placeholder="Search..."  />
 </div>
 ```
-##history_'days'
+## history_'days'
 If this is set then when the user clicks or enters on a suggestion, it will save it to their personal hostory for your set number of days
 
 **You must add an id to the search box, each search box will have its own search history using the id**
