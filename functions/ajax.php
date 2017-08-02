@@ -108,7 +108,23 @@
 				$searchSuggest = $_POST['searchSuggest'];
 				$days = $_POST['history'];
 				$historyID = $_POST['historyID'];
-				setcookie('search_'.$searchSuggest.'|'.$historyID, $searchSuggest, time() + (86400 * $days), "/");
+				$cookieName = 'timSearch_'.$historyID;
+				if(isset($_COOKIE[$cookieName])){
+					$value = $_COOKIE[$cookieName];
+					$value = $value.'.'.$searchSuggest;
+					setcookie($cookieName, $value, time() + (86400 * $days), "/");
+				}else{
+					setcookie('timSearch_'.$historyID, $searchSuggest, time() + (86400 * $days), "/");
+				}
+				break;
+			case 'checkHistory':
+				$historyID = $_POST['historyID'];
+				$cookie = $_COOKIE['timSearch_'.$historyID];
+				$cookieEX = explode('.', $cookie);
+				foreach($cookieEX as $key => $value){
+					$searchOutput .= '<a class="search-suggest" data-search-query="'.$value.'">'.$value.'</a>';
+				}
+				echo $searchOutput;
 				break;
 		}
 	}

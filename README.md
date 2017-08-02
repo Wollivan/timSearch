@@ -137,6 +137,17 @@ Example:
 	<input type="text" class="search" data-search="table_locations fields_name altrow_id" name="search" placeholder="Search..."  />
 </div>
 ```
+##history_'days'
+If this is set then when the user clicks or enters on a suggestion, it will save it to their personal hostory for your set number of days
+
+**You must add an id to the search box, each search box will have its own search history using the id**
+
+Example:
+```
+<div class="search-wrap">
+	<input type="text" id="history-box" class="search" data-search="table_locations fields_name savehistory_2" name="search" placeholder="Search..."   />
+</div>
+```
 
 ## customclass_'yourclass'
 Adds a class to the search-suggestion div, from here you can target the elemets with the following css targeters
@@ -217,6 +228,10 @@ preview_'yourfield'show a preview another field from each result that has no bea
 startno_'integer'the search will start when your chosen integer is reached (default = 3)
 
 striphtml_offif this is set then html tags in the results will not be striped when you click the entry to populate the input
+
+altrow_'yourfield'If this is set then when the suggestion is clicked the field will be populated with data from the chosen alternative row
+
+history_'days' If this is set then when the user clicks or enters on a suggestion, it will save it to their personal hostory for your set number of days
 
 customclass_'yourclass'adds a class to the search-suggestion div, from here you can target the elemets with the following css targeters
 

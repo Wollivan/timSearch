@@ -1,5 +1,9 @@
 # timSearch Change Log
 
+## 0.2.1 (2017-02-08)
+### Fixed
+- The search history feature
+
 ## 0.2 (2017-01-08)
 ### Added
 - Some security with mysqli_real_escape_string
