@@ -256,7 +256,6 @@
 			}
 			if(historyID != '' && historyID != undefined){
 				if(inputValue == '' || inputValue == undefined){
-					$searchSuggestions.show();
 					$.ajax({
 						url: 'timSearch/functions/ajax.php',
 						type: 'post',
@@ -265,9 +264,13 @@
 							'historyID': historyID
 						},
 						success: function(data, status){
-							$searchSuggestions.css('max-height', height + 'px');
-							$searchSuggestions.html(data);
-							$searchSuggestions.addClass(customclass);
+							if(data != 'nohistory'){
+								$searchSuggestions.show();
+								$searchSuggestions.css('max-height', height + 'px');
+								$searchSuggestions.html(data);
+								$searchSuggestions.addClass(customclass);
+							}
+						
 						},
 						error: function(xhr, status, error){
 							console.log(error);
