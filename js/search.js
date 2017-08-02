@@ -33,8 +33,8 @@
 				striphtml = '',
 				customclass = '',
 				altrow = '',
-				history = '',
-				historyID = '',
+				savehistory = '',
+				historyID = $this.attr('id'),
 				startno = 3,
 				searchParamsSplit = searchParams.split(' '),
 				searchParamsSplitLength = searchParamsSplit.length;
@@ -73,9 +73,8 @@
 				if (searchParamsSplit[i].startsWith('altrow_')) {
 					altrow = searchParamsSplit[i].replace(/.*altrow_([^\s]+).*/g, "$1");
 				}
-				if (searchParamsSplit[i].startsWith('history_')) {
-					history = searchParamsSplit[i].replace(/.*history_([^\s]+).*/g, "$1");
-					historyID = $this.attr('id');
+				if (searchParamsSplit[i].startsWith('savehistory_')) {
+					savehistory = searchParamsSplit[i].replace(/.*savehistory_([^\s]+).*/g, "$1");
 				}
 			}
 			fields = fields.substring(0, fields.length - 1);
@@ -123,7 +122,7 @@
 						data: {
 							'action': 'searchHistory',
 							'searchSuggest': searchSuggest,
-							'history': history,
+							'history': savehistory,
 							'historyID': historyID
 						},
 						success: function(data, status){
@@ -177,25 +176,119 @@
 				mulitCheck = $this.attr('data-multi');
 				searchSuggest = $this.attr('data-search-query'),
 				$parent =  $this.parent('.search-suggestions');
-				$input = $parent.siblings('.search');
-				// console.log($this);
-				// console.log('asdasd');
+				$input = $parent.siblings('.search'),
+				searchParams = $input.attr("data-search"),
+				fields = '',
+				table = '',
+				savehistory = '',
+				historyID = $input.attr('id'),
+				searchParamsSplit = searchParams.split(' '),
+				searchParamsSplitLength = searchParamsSplit.length;
+				
+			for (let i = 0; i < searchParamsSplitLength; i++) { 
+				if (searchParamsSplit[i].startsWith('fields_')) {
+					fields += searchParamsSplit[i].replace(/.*fields_([^\s]+).*/g, "$1") + ',';
+				}
+				if (searchParamsSplit[i].startsWith('table_')) {
+					table = searchParamsSplit[i].replace(/.*table_([^\s]+).*/g, "$1");
+				}
+				if (searchParamsSplit[i].startsWith('savehistory_')) {
+					savehistory = searchParamsSplit[i].replace(/.*savehistory_([^\s]+).*/g, "$1");
+				}
+			}
+			
 			if($input.hasClass('no-enter')){
 				$input.removeClass('no-enter');
 			}
+			
+			if(savehistory != ''){
+				$.ajax({
+					url: 'timSearch/functions/ajax.php',
+					type: 'post',
+					data: {
+						'action': 'searchHistory',
+						'searchSuggest': searchSuggest,
+						'history': savehistory,
+						'historyID': historyID
+					},
+					success: function(data, status){
+						console.log('test');
+						
+					},
+					error: function(xhr, status, error){
+						console.log(error);
+					}
+				});
+			}
+			
 			$input.val(searchSuggest);
 			$parent.hide();
 		});
+		
+		
+		//When a history box is clicked, display its history
+		$('.search').on('click.search', function(){
+			let $this = $(this),
+				inputValue = $this.val();
+				$parent = $this.closest('.search-wrap'),
+				$searchSuggestions = $parent.children('.search-suggestions'),
+				searchSuggest = $this.attr('data-search-query'),
+				searchParams = $this.attr("data-search"),
+				customclass = '',
+				height = '',
+				savehistory = '',
+				historyID = $this.attr('id'),
+				searchParamsSplit = searchParams.split(' '),
+				searchParamsSplitLength = searchParamsSplit.length;
+				
+				
+
+			for (let i = 0; i < searchParamsSplitLength; i++) { 
+				if (searchParamsSplit[i].startsWith('customclass_')) {
+					customclass = searchParamsSplit[i].replace(/.*customclass_([^\s]+).*/g, "$1");
+				}
+				if (searchParamsSplit[i].startsWith('height_')) {
+					height = searchParamsSplit[i].replace(/.*height_([^\s]+).*/g, "$1");
+				}
+				if (searchParamsSplit[i].startsWith('savehistory_')) {
+					savehistory = searchParamsSplit[i].replace(/.*savehistory_([^\s]+).*/g, "$1");
+				}
+			}
+			if(historyID == '' || inputValue == '' || inputValue == undefined){
+				console.log($parent);
+				$searchSuggestions.show();
+				$.ajax({
+					url: 'timSearch/functions/ajax.php',
+					type: 'post',
+					data: {
+						'action': 'checkHistory',
+						'historyID': historyID
+					},
+					success: function(data, status){
+						$searchSuggestions.css('max-height', height + 'px');
+						$searchSuggestions.html(data);
+						$searchSuggestions.addClass(customclass);
+					},
+					error: function(xhr, status, error){
+						console.log(error);
+					}
+				});
+			}
+		});
+		
 		// $('.search-suggestions').on('mouseenter.search', '.search-suggest', function(){
 			// $(this).addClass('highlighted').siblings().removeClass('highlighted');
 		// });
 		//search box close
-		let $NotSearch = $('body');
+		let _body = $('body');
 			
-		$NotSearch.on('click.search', function(){
+		_body.on('click.searchHide', function(){
 			let $searchBox = $('.search-suggestions');
 			$searchBox.fadeOut(300);
 		});
 		
+		$('.search').on('click.preventHide', function(e){
+			e.stopPropagation();
+		});
 
 })(window.jQuery, window, document);
