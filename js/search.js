@@ -254,25 +254,26 @@
 					savehistory = searchParamsSplit[i].replace(/.*savehistory_([^\s]+).*/g, "$1");
 				}
 			}
-			if(historyID == '' || inputValue == '' || inputValue == undefined){
-				console.log($parent);
-				$searchSuggestions.show();
-				$.ajax({
-					url: 'timSearch/functions/ajax.php',
-					type: 'post',
-					data: {
-						'action': 'checkHistory',
-						'historyID': historyID
-					},
-					success: function(data, status){
-						$searchSuggestions.css('max-height', height + 'px');
-						$searchSuggestions.html(data);
-						$searchSuggestions.addClass(customclass);
-					},
-					error: function(xhr, status, error){
-						console.log(error);
-					}
-				});
+			if(historyID != '' && historyID != undefined){
+				if(inputValue == '' || inputValue == undefined){
+					$searchSuggestions.show();
+					$.ajax({
+						url: 'timSearch/functions/ajax.php',
+						type: 'post',
+						data: {
+							'action': 'checkHistory',
+							'historyID': historyID
+						},
+						success: function(data, status){
+							$searchSuggestions.css('max-height', height + 'px');
+							$searchSuggestions.html(data);
+							$searchSuggestions.addClass(customclass);
+						},
+						error: function(xhr, status, error){
+							console.log(error);
+						}
+					});
+				}
 			}
 		});
 		
