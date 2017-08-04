@@ -150,9 +150,11 @@ Example:
 ```
 *The search suggestions from the users history will be given the 'search-history' class and can be styled using that*
 
-## folderdir_'directory' If this is set then instead of searching through a database it will search through the chosen folder for all file types
+## folderdir_'directory'
+If this is set then instead of searching through a database it will search through the chosen folder for all file types
 
-## filetype_'fileext' These are the file types that will be searched for, if left blank, all files in the directory will be search
+## filetype_'fileext'
+These are the file types that will be searched for, if left blank, all files in the directory will be search
 
 Example:
 ```
