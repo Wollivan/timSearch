@@ -148,6 +148,20 @@ Example:
 	<input type="text" id="history-box" class="search" data-search="table_locations fields_name savehistory_2" name="search" placeholder="Search..."   />
 </div>
 ```
+*The search suggestions from the users history will be given the 'search-history' class and can be styled using that*
+
+##folderdir_'directory' If this is set then instead of searching through a database it will search through the chosen folder for all file types
+
+##filetype_'fileext' These are the file types that will be searched for, if left blank, all files in the directory will be search
+
+Example:
+```
+<div class="search-wrap">
+	<input type="text" class="search" data-search="folderdir_images filetype_jpeg filetypes_jpg" name="search" placeholder="Search..."   />
+</div>
+```
+
+*The following options won't work when searching files: table, fields, preview, striphtml, altrow*
 
 ## customclass_'yourclass'
 Adds a class to the search-suggestion div, from here you can target the elemets with the following css targeters
@@ -215,25 +229,27 @@ fields_'yourfield'the field that will be queried - at least 1
 
 ### Optional:
 
-height_'integer'limits the height of the search results in pixels of your chosen integer and adds scroll if it goes beyond
+height_'integer' limits the height of the search results in pixels of your chosen integer and adds scroll if it goes beyond
 
-limit_'integer'limits the results of the search to your chosen integer
+limit_'integer' limits the results of the search to your chosen integer
 
-orderby_'yourfield'order your results by the chosen field in your databases
+preview_'yourfield' show a preview another field from each result that has no bearing on the search itself
 
-ordertype_'asc/desc'Order your results by Ascending or Descending
+orderby_'yourfield' order your results by the chosen field in your databases
 
-preview_'yourfield'show a preview another field from each result that has no bearing on the search itself
+ordertype_'asc/desc' Order your results by Ascending or Descending
 
-startno_'integer'the search will start when your chosen integer is reached (default = 3)
+startno_'integer' the search will start when your chosen integer is reached (default = 3)
 
 striphtml_offif this is set then html tags in the results will not be striped when you click the entry to populate the input
 
-altrow_'yourfield'If this is set then when the suggestion is clicked the field will be populated with data from the chosen alternative row
+altrow_'yourfield' If this is set then when the suggestion is clicked the field will be populated with data from the chosen alternative row
 
 history_'days' If this is set then when the user clicks or enters on a suggestion, it will save it to their personal hostory for your set number of days
 
-customclass_'yourclass'adds a class to the search-suggestion div, from here you can target the elemets with the following css targeters
+files_'directory' If this is set then instead of searching through a database it will search through the chosen folder for all file types
+
+customclass_'yourclass' adds a class to the search-suggestion div, from here you can target the elemets with the following css targeters
 
 ## Your database is the limit!
 

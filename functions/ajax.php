@@ -9,14 +9,26 @@
 				$fields = mysqli_real_escape_string($conn, $_POST['fields']);
 				$height = mysqli_real_escape_string($conn, $_POST['height']);
 				$limit = mysqli_real_escape_string($conn, $_POST['limit']);
+				$preview = mysqli_real_escape_string($conn, $_POST['preview']);
 				$orderby = mysqli_real_escape_string($conn, $_POST['orderby']);
 				$ordertype = mysqli_real_escape_string($conn, $_POST['ordertype']);
-				$preview = mysqli_real_escape_string($conn, $_POST['preview']);
 				$striphtml = mysqli_real_escape_string($conn, $_POST['striphtml']);
-				$customclass = mysqli_real_escape_string($conn, $_POST['customclass']);
 				$altrow = mysqli_real_escape_string($conn, $_POST['altrow']);
+				$folderdir = mysqli_real_escape_string($conn, $_POST['folderdir']);
+				$filetypes = mysqli_real_escape_string($conn, $_POST['filetypes']);
+				$customclass = mysqli_real_escape_string($conn, $_POST['customclass']);
 				$fieldData = explode(",", $_POST['fields']);
 				$fieldDataCount = count($fieldData);
+				
+				//if files are set this will end the statement after searching the files
+				if($table == '' && $fields == '' && $folderdir != ''){
+					$filesArray = scandir('/'.$folderdir);
+					foreach($filesArrray as $key => $value){
+						echo $value;
+					}
+					//print_r($filesArray);
+					break;
+				}
 				
 				foreach ($fieldData as $key => $value) {
 					$value = mysqli_real_escape_string($conn, $value);
@@ -40,9 +52,6 @@
 				$res = mysqli_query($conn, $sql) or die('<span style="background-color:#fff;">Ensure that your database call in ajax.php is correct (it\'s on line 38)</span>');
 				$num = mysqli_num_rows($res);
 				
-				$sql = "SELECT * FROM $table $search $orderby $limit";
-				
-				
 				if($num >= 1){
 					if($fieldDataCount > 1){
 						while($row = mysqli_fetch_assoc($res)){
@@ -50,7 +59,6 @@
 							foreach ($fieldData as $key => $value) {
 								$searchconditions.= $value.' LIKE \'%'.$search.'%\' || ';
 								$searchdisplay.= $row[$value].' | ';
-								//$searchValue = $row[$value].'|';
 							}
 							$searchdisplay = rtrim($searchdisplay, " | ");
 							$resultbyoutput = $row[$resultby];
@@ -73,7 +81,6 @@
 							}else{
 								$searchOutput .= '<a class="search-suggest" data-search-query="'.$searchValue.'">'.$searchdisplay.'</a>';
 							}
-							
 						}
 						$success = 1;
 					}else{
@@ -132,11 +139,9 @@
 				}
 				break;
 			case 'deleteHistory':
-			
 				$historyID = $_POST['historyID'];
 				$cookieName = 'timSearch_'.$historyID;
 				setcookie($cookieName, '', time() + (86400 * 1), "/");
-				
 				break;
 		}
 	}
