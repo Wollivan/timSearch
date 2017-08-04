@@ -33,13 +33,15 @@
 				striphtml = '',
 				customclass = '',
 				altrow = '',
+				folderdir = '',
+				filetypes = '',
 				savehistory = '',
 				historyID = $this.attr('id'),
 				startno = 3,
 				searchParamsSplit = searchParams.split(' '),
 				searchParamsSplitLength = searchParamsSplit.length;
 			
-			for (let i = 0; i < searchParamsSplitLength; i++) { 
+			for (let i = 0; i < searchParamsSplitLength; i++) {
 				if (searchParamsSplit[i].startsWith('fields_')) {
 					fields += searchParamsSplit[i].replace(/.*fields_([^\s]+).*/g, "$1") + ',';
 				}
@@ -75,6 +77,12 @@
 				}
 				if (searchParamsSplit[i].startsWith('savehistory_')) {
 					savehistory = searchParamsSplit[i].replace(/.*savehistory_([^\s]+).*/g, "$1");
+				}
+				if (searchParamsSplit[i].startsWith('folderdir_')) {
+					folderdir = searchParamsSplit[i].replace(/.*folderdir_([^\s]+).*/g, "$1");
+				}
+				if (searchParamsSplit[i].startsWith('filetypes_')) {
+					filetypes = searchParamsSplit[i].replace(/.*filetypes_([^\s]+).*/g, "$1");
 				}
 			}
 			fields = fields.substring(0, fields.length - 1);
@@ -152,10 +160,15 @@
 							'preview': preview,
 							'striphtml': striphtml,
 							'customclass': customclass,
-							'altrow': altrow
+							'altrow': altrow,
+							'folderdir': folderdir,
+							'filetypes': filetypes
 						},
 						success: function(data, status){
 							// $this.after(data);
+							console.log(folderdir);
+							console.log(filetypes);
+							console.log(data);
 							$searchSuggestions.css('max-height', height + 'px');
 							$searchSuggestions.html(data);
 							$searchSuggestions.addClass(customclass);
@@ -185,7 +198,7 @@
 				searchParamsSplit = searchParams.split(' '),
 				searchParamsSplitLength = searchParamsSplit.length;
 				
-			for (let i = 0; i < searchParamsSplitLength; i++) { 
+			for (let i = 0; i < searchParamsSplitLength; i++) {
 				if (searchParamsSplit[i].startsWith('fields_')) {
 					fields += searchParamsSplit[i].replace(/.*fields_([^\s]+).*/g, "$1") + ',';
 				}
