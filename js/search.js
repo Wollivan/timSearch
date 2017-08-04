@@ -280,6 +280,30 @@
 			}
 		});
 		
+		$('.search-wrap').on('click.search', '.delete-history', function(){
+			let $this = $(this),
+				historyID = $this.attr('data-history');
+			$.ajax({
+					url: 'timSearch/functions/ajax.php',
+					type: 'post',
+					data: {
+						'action': 'deleteHistory',
+						'historyID': historyID
+					},
+					success: function(data, status){
+						if(data != 'nohistory'){
+							$searchSuggestions.show();
+							$searchSuggestions.css('max-height', height + 'px');
+							$searchSuggestions.html(data);
+							$searchSuggestions.addClass(customclass);
+						}
+					
+					},
+					error: function(xhr, status, error){
+						console.log(error);
+					}
+				});
+		});
 		// $('.search-suggestions').on('mouseenter.search', '.search-suggest', function(){
 			// $(this).addClass('highlighted').siblings().removeClass('highlighted');
 		// });

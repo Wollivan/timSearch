@@ -125,10 +125,18 @@
 					foreach($cookieEX as $key => $value){
 						$searchOutput .= '<a class="search-suggest search-history" data-search-query="'.$value.'">'.$value.'</a>';
 					}
+					$searchOutput .= '<a class="delete-history" data-history="'.$historyID.'">Delete history</a>'; 
 					echo $searchOutput;
 				}else{
 					echo 'nohistory';
 				}
+				break;
+			case 'deleteHistory':
+			
+				$historyID = $_POST['historyID'];
+				$cookieName = 'timSearch_'.$historyID;
+				setcookie($cookieName, '', time() + (86400 * 1), "/");
+				
 				break;
 		}
 	}

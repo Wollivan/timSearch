@@ -17,6 +17,7 @@
 .search-suggestions a:hover {
     color: #FFFFFF;
     background-color: #7dcaf1;
+	text-decoration: none;
 }
 .search-suggestions a span {
 	color: #bfbfbf;
@@ -25,19 +26,12 @@
 	background-color: #378FBC !important;
 	color: #ffffff !important;
 }
-.search-history span {
-	/* Safari */
-	-webkit-transform: rotate(-90deg);
+.delete-history {
+	padding: 2px !important;
+	background-color: #ff7979 !important;
+	color: #ffffff !important;
+}
 
-	/* Firefox */
-	-moz-transform: rotate(-90deg);
-
-	/* IE */
-	-ms-transform: rotate(-90deg);
-
-	/* Opera */
-	-o-transform: rotate(-90deg);
-
-	/* Internet Explorer */
-	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+.delete-history:hover {
+	background-color: #ff3333 !important;
 }

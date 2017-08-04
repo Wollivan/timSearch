@@ -140,7 +140,7 @@ Example:
 ## history_'days'
 If this is set then when the user clicks or enters on a suggestion, it will save it to their personal hostory for your set number of days
 
-**You must add an id to the search box, each search box will have its own search history using the id**
+**You must add an id to the search box, each search box will have its own search history using the id, without an id, this feature won't work**
 
 Example:
 ```
