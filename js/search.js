@@ -27,7 +27,7 @@
 				table = '',
 				conneedle = '',
 				operator = '',
-				conhaystack = '',
+				convalue = '',
 				height = '',
 				limit = '',
 				orderby = '',
@@ -51,14 +51,14 @@
 				if (searchParamsSplit[i].startsWith('table_')) {
 					table = searchParamsSplit[i].replace(/.*table_([^\s]+).*/g, "$1");
 				}
-				if (searchParamsSplit[i].startsWith('conneedle_')) {
-					conneedle = searchParamsSplit[i].replace(/.*conneedle_([^\s]+).*/g, "$1");
+				if (searchParamsSplit[i].startsWith('confield_')) {
+					confield = searchParamsSplit[i].replace(/.*confield_([^\s]+).*/g, "$1");
 				}
 				if (searchParamsSplit[i].startsWith('conoperator_')) {
 					conoperator = searchParamsSplit[i].replace(/.*conoperator_([^\s]+).*/g, "$1");
 				}
-				if (searchParamsSplit[i].startsWith('conhaystack_')) {
-					conhaystack = searchParamsSplit[i].replace(/.*conhaystack_([^\s]+).*/g, "$1");
+				if (searchParamsSplit[i].startsWith('convalue_')) {
+					convalue = searchParamsSplit[i].replace(/.*convalue_([^\s]+).*/g, "$1");
 				}
 				if (searchParamsSplit[i].startsWith('height_')) {
 					height = searchParamsSplit[i].replace(/.*height_([^\s]+).*/g, "$1");
@@ -165,9 +165,9 @@
 							'search': search,
 							'table': table,
 							'fields': fields,
-							'conneedle': conneedle,
+							'confield': confield,
 							'conoperator': conoperator,
-							'conhaystack': conhaystack,
+							'convalue': convalue,
 							'height': height,
 							'limit': limit,
 							'orderby': orderby,
