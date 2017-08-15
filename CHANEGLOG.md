@@ -1,5 +1,9 @@
 # timSearch Change Log
 
+## 0.3 (2017-04-06)
+### Added
+- The option to add more conditions
+
 ## 0.2.2 (2017-04-06)
 ### Added
 - Option to delete history
