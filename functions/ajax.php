@@ -17,6 +17,9 @@
 				$folderdir = mysqli_real_escape_string($conn, $_POST['folderdir']);
 				$filetypes = mysqli_real_escape_string($conn, $_POST['filetypes']);
 				$customclass = mysqli_real_escape_string($conn, $_POST['customclass']);
+				$conneedle = mysqli_real_escape_string($conn, $_POST['conneedle']);
+				$conoperator = mysqli_real_escape_string($conn, $_POST['conoperator']);
+				$conhaystack = mysqli_real_escape_string($conn, $_POST['conhaystack']);
 				$fieldData = explode(",", $_POST['fields']);
 				$fieldDataCount = count($fieldData);
 				
@@ -48,8 +51,12 @@
 					}
 				}
 				$search = $searchconditions;
-				$sql = "SELECT * FROM $table $search $orderby $limit";
-				$res = mysqli_query($conn, $sql) or die('<span style="background-color:#fff;">Ensure that your database call in ajax.php is correct (it\'s on line 38)</span>');
+				if($conneedle != '' && $conoperator != '' && $conhaystack != ''){
+					$cons = 'AND '.$conneedle.' '.$conoperator.' \''.$conhaystack.'\'';
+				}
+				$sql = "SELECT * FROM $table $search $cons $orderby $limit";
+				// $res = mysqli_query($conn, $sql) or die('<span style="background-color:#fff;">Ensure that your database call in ajax.php is correct (it\'s on line 38)</span>');
+				$res = mysqli_query($conn, $sql) or die($sql);
 				$num = mysqli_num_rows($res);
 				
 				if($num >= 1){

@@ -25,6 +25,9 @@
 				searchParams = $this.attr("data-search"),
 				fields = '',
 				table = '',
+				conneedle = '',
+				operator = '',
+				conhaystack = '',
 				height = '',
 				limit = '',
 				orderby = '',
@@ -47,6 +50,15 @@
 				}
 				if (searchParamsSplit[i].startsWith('table_')) {
 					table = searchParamsSplit[i].replace(/.*table_([^\s]+).*/g, "$1");
+				}
+				if (searchParamsSplit[i].startsWith('conneedle_')) {
+					conneedle = searchParamsSplit[i].replace(/.*conneedle_([^\s]+).*/g, "$1");
+				}
+				if (searchParamsSplit[i].startsWith('conoperator_')) {
+					conoperator = searchParamsSplit[i].replace(/.*conoperator_([^\s]+).*/g, "$1");
+				}
+				if (searchParamsSplit[i].startsWith('conhaystack_')) {
+					conhaystack = searchParamsSplit[i].replace(/.*conhaystack_([^\s]+).*/g, "$1");
 				}
 				if (searchParamsSplit[i].startsWith('height_')) {
 					height = searchParamsSplit[i].replace(/.*height_([^\s]+).*/g, "$1");
@@ -153,6 +165,9 @@
 							'search': search,
 							'table': table,
 							'fields': fields,
+							'conneedle': conneedle,
+							'conoperator': conoperator,
+							'conhaystack': conhaystack,
 							'height': height,
 							'limit': limit,
 							'orderby': orderby,
@@ -166,9 +181,6 @@
 						},
 						success: function(data, status){
 							// $this.after(data);
-							console.log(folderdir);
-							console.log(filetypes);
-							console.log(data);
 							$searchSuggestions.css('max-height', height + 'px');
 							$searchSuggestions.html(data);
 							$searchSuggestions.addClass(customclass);
